@@ -17,7 +17,7 @@ function getPhotos() {
       description: `my fav photo #${i+1}`,
       likes: getRandInt(15, 200),
       comments: getRandInt(0, 200)
-    })
+    });
   }
   return photos;
 }
