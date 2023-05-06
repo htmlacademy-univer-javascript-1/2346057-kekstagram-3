@@ -1,8 +1,8 @@
 function getRandInt(from, to) {
-    return Math.floor(Math.min(from) + Math.random() * Math.abs(to-from));
+  return Math.floor(Math.min(from) + Math.random() * Math.abs(to-from));
 }
 function isStringFits(string, maxLength) {
-    return string.lendth <= maxLength;
+  return string.lendth <= maxLength;
 }
 
-export {getRandInt, isStringFits}
+export {getRandInt, isStringFits};
