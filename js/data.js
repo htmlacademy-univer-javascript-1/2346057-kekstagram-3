@@ -11,6 +11,5 @@ for (let i = 0; i < 25; i++) {
     };
     photos.push(newElem);
   }
-  
-  
-  export {photos};
+
+export {photos};
