@@ -14,3 +14,4 @@ function getPhotos() {
 }
 
 export {getPhotos};
+//Задание 7 часть 2
