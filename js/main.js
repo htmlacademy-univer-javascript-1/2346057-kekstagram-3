@@ -1,14 +1,25 @@
-function getRandom(a, b) {
-  if (a >= 0 && b >= 0) {
-    if (a > b) {
-      const c = a;
-      a = b;
-      b = c;
-    }
-    return Math.round(Math.random() * (b - a + 1) + a);
-  }
+function getRandInt(from, to) {
+  return Math.floor(Math.min(from) + Math.random() * Math.abs(to-from));
 }
-
-function isMaxLength(string, maxLength) {
+getRandInt(31, 209);
+function isStringFits(string, maxLength) {
   return string.length <= maxLength;
 }
+
+isStringFits('helloworld', 9);
+
+function getPhotos() {
+  const photos = [];
+  for (let i=0; i<25; i++) {
+    photos.push({
+      id: i+1,
+      url: `photos/${i+1}.jpg`,
+      description: `my fav photo #${i+1}`,
+      likes: getRandInt(15, 200),
+      comments: getRandInt(0, 200)
+    });
+  }
+  return photos;
+}
+
+getPhotos();
