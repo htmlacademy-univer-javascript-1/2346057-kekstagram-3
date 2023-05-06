@@ -1,17 +1,8 @@
-function getRandomInt(min, max) {
-    if (min > max) {
-      const temp = min;
-      min = max;
-      max = temp;
-    }
-    return Math.round(Math.random() * (max-min) + min);
-  }
-  
-  function checkLength(str, maxLength) {
-    return str.length <= maxLength;
-  }
-  
-  export {
-    getRandomInt, checkLength
-  };
-  
+function getRandInt(from, to) {
+    return Math.floor(Math.min(from) + Math.random() * Math.abs(to-from));
+}
+function isStringFits(string, maxLength) {
+    return string.lendth <= maxLength;
+}
+
+export {getRandInt, isStringFits}
