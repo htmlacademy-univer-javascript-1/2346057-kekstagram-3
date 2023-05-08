@@ -87,16 +87,15 @@ function addEffect(effect, update) {
         step
       });
 
-        sliderElement.removeAttribute('hidden');
-        image.className = '';
-        image.classList.add(`effects__preview--${effect}`);
-        currentEffect = effect;
-      }
+      sliderElement.removeAttribute('hidden');
+      image.className = '';
+      image.classList.add(`effects__preview--${effect}`);
+      currentEffect = effect;
+    }
       if (update) {
-
       } else {
-        const sliderValue = sliderElement.noUiSlider.get();
-        image.style.filter = `${name}(${sliderValue}${measure})`;
+    const sliderValue = sliderElement.noUiSlider.get();
+      image.style.filter = `${name}(${sliderValue}${measure})`;
       } 
     }
 }
