@@ -72,21 +72,21 @@ function addEffect(effect, update) {
   const filter = filters[effect];
 
   const { min, max, step, measure, name } = filter;
-  
+
   if (effect === 'none') {
     image.style.filter = 'none';
     sliderElement.setAttribute('hidden', true);
     image.className = '';
-} else {
-      if (!update) {
-        image.style.setProperty('filter', `${name}(${min}${measure})`);
-  
-        sliderElement.noUiSlider.updateOptions({
-          range: { min, max },
-          start: min,
-          step
-        });
-  
+  } else {
+    if (!update) {
+      image.style.setProperty('filter', `${name}(${min}${measure})`);
+
+      sliderElement.noUiSlider.updateOptions({
+        range: { min, max },
+        start: min,
+        step
+      });
+
         sliderElement.removeAttribute('hidden');
         image.className = '';
         image.classList.add(`effects__preview--${effect}`);
