@@ -92,18 +92,19 @@ function addEffect(effect, update) {
       image.classList.add(`effects__preview--${effect}`);
       currentEffect = effect;
     }
-      if (update) {
-      } else {
+    if (update) {
+
+    } else {
     const sliderValue = sliderElement.noUiSlider.get();
       image.style.filter = `${name}(${sliderValue}${measure})`;
-      } 
-    }
+    } 
+  }
 }
 
 sliderElement.noUiSlider.on('slide', () => {
-    sliderElementValue.value = sliderElement.noUiSlider.get();
-    addEffect(currentEffect, true);
-  });
+  sliderElementValue.value = sliderElement.noUiSlider.get();
+  addEffect(currentEffect, true);
+});
 
 filterLabels.forEach((label) => {
     const effect = label.getAttribute('for').slice(7);
