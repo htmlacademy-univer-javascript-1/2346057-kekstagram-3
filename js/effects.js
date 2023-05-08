@@ -91,13 +91,10 @@ function addEffect(effect, update) {
       image.className = '';
       image.classList.add(`effects__preview--${effect}`);
       currentEffect = effect;
-    }
-    if (update) {
-
     } else {
-    const sliderValue = sliderElement.noUiSlider.get();
+      const sliderValue = sliderElement.noUiSlider.get();
       image.style.filter = `${name}(${sliderValue}${measure})`;
-    } 
+    }
   }
 }
 
@@ -107,21 +104,20 @@ sliderElement.noUiSlider.on('slide', () => {
 });
 
 filterLabels.forEach((label) => {
-    const effect = label.getAttribute('for').slice(7);
-    label.addEventListener('click', () => {
-      addEffect(effect);
-    });
+  const effect = label.getAttribute('for').slice(7);
+  label.addEventListener('click', () => {
+    addEffect(effect);
+  });
 });
 
 filterLabels.forEach( (element) => {
-    element.addEventListener('click', () => {
-      addEffect(element.value);
-    });
+  element.addEventListener('click', () => {
+    addEffect(element.value);
   });
+});
 
 
 const changeImageScale = (plus = true, image) => {
-
   let value = parseInt(scale.value, 10) + (plus ? 25 : -25);
 
   if (value < 25) {
