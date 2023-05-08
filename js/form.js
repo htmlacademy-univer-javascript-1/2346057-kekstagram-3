@@ -1,44 +1,43 @@
-const imgUpload = document.querySelector('.img-upload__overlay');
-const fileInput = document.querySelector('.img-upload__input');
-const closeImgUploadButton = document.querySelector('.img-upload__cancel');
+import { sendData } from "./fetchData.js";
+import { closeImageUpload } from "./bigPicture.js";
 
+const form = document.querySelector('.img-upload__form');
 
-function cleanForm() {
-  document.querySelector('.text__hashtags').value = '';
-  document.querySelector('.text__description').value = '';
-  document.querySelector('#upload-file').value = '';
+// eslint-disable-next-line no-undef
+const pristine = new Pristine(form, {
+  classTo: 'img-upload__text',
+  successClass: 'form--valid',
+  errorClass: 'form--invalid',
+  errorTextParent: 'img-upload__text',
+  errorTextTag: 'span',
+  errorTextClass: 'form__error'
+});
 
-  const imgUploadPreview = document.querySelector('.img-upload__preview');
-  const scale = document.querySelector('.scale__control--value');
-  scale.value = `${100}%`;
-  imgUploadPreview.style.setProperty('transform','scale(1.0)');
-  const image = imgUploadPreview.querySelector('img');
-  image.style.filter = 'none';
-  const effectsList = document.querySelector('.effects__list');
-  const originalEffect = effectsList.querySelector('#effect-none');
-  originalEffect.click();
-  const sliderElement = document.querySelector('.effect-level__slider');
-  sliderElement.setAttribute('hidden', true);
-}
+const minLen = 20;
+const maxLen = 140;
 
-function closeImgUpload() {
-  imgUpload.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', escapeKeyHandler);
-  cleanForm();
-}
-
-function escapeKeyHandler(ev) {
-  if (ev.key === 'Escape') {
-    closeImgUpload();
+function validateComment(comment) {
+  if (comment.length >= minLen && comment.length <= maxLen) {
+    document.querySelector('.img-upload__submit').disabled = false;
+    return true;
   }
+  document.querySelector('.img-upload__submit').disabled = true;
+    return false;
 }
 
-function openImgUpload() {
-  imgUpload.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  document.addEventListener('keydown', escapeKeyHandler);
-}
+pristine.addValidator(
+  form.querySelector('.text__description'),
+  validateComment,
+  `Комментарий дложен быть от ${minLen} до ${maxLen} символов.`
+);
 
-fileInput.addEventListener('change', openImgUpload);
-closeImgUploadButton.addEventListener('click', closeImgUpload);
+form.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  if(pristine.validate()) {
+    const data = new FormData(document.getElementById('upload-select-image'))
+    evt.target.querySelector('.img-upload__submit').disabled = true;
+    console.log(form);
+    await sendData(data);
+    closeImageUpload();
+  }
+});

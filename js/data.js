@@ -1,13 +1,18 @@
-import { getRandInt } from './util.js';
-function getPhotos() {
+import { getData } from "./fetchData.js";
+const url = 'https://27.javascript.pages.academy/kekstagram-simple/data'
+
+async function getPhotos() {
   const photos = [];
-  for (let i=0; i<25; i++) {
+  const data = await getData(url);
+  let id = 0;
+  for (const obj of data) {
+    id++;
     photos.push({
-      id: i+1,
-      url: `photos/${i+1}.jpg`,
-      description: `my favourite photos #${i+1}`,
-      likes: getRandInt(15, 200),
-      comments: getRandInt(0, 200)
+      id,
+      url: obj.url,
+      description: obj.description,
+      likes: obj.likes,
+      comments: obj.comments
     });
   }
   return photos;
