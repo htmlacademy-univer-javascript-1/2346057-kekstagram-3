@@ -67,17 +67,17 @@ noUiSlider.create(sliderElement, {
 sliderElement.setAttribute('hidden', true);
 
 function addEffect(effect, update) {
-    const image = imgUploadPreview.querySelector('img');
+  const image = imgUploadPreview.querySelector('img');
+
+  const filter = filters[effect];
+
+  const { min, max, step, measure, name } = filter;
   
-    const filter = filters[effect];
-  
-    const { min, max, step, measure, name } = filter;
-  
-    if (effect === 'none') {
-      image.style.filter = 'none';
-      sliderElement.setAttribute('hidden', true);
-      image.className = '';
-    } else {
+  if (effect === 'none') {
+    image.style.filter = 'none';
+    sliderElement.setAttribute('hidden', true);
+    image.className = '';
+} else {
       if (!update) {
         image.style.setProperty('filter', `${name}(${min}${measure})`);
   
