@@ -53,17 +53,17 @@ const filters = {
     measure: ''
   }
 };
-  
+
 noUiSlider.create(sliderElement, {
-    range: {
-      min: 0,
-      max: 100,
-    },
-    start: 100,
-    step: 1,
-    connect: 'lower'
-  });
-  
+  range: {
+    min: 0,
+    max: 100,
+  },
+  start: 100,
+  step: 1,
+  connect: 'lower'
+});
+
 sliderElement.setAttribute('hidden', true);
 
 function addEffect(effect, update) {
