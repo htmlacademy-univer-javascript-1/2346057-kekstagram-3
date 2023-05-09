@@ -1,22 +1,19 @@
-import { getData } from "./fetchData.js";
-const url = 'https://27.javascript.pages.academy/kekstagram-simple/data'
+import { getRandomInt } from './util.js';
+const photos = [];
 
-async function getPhotos() {
-  const photos = [];
-  const data = await getData(url);
-  let id = 0;
-  for (const obj of data) {
-    id++;
-    photos.push({
-      id,
-      url: obj.url,
-      description: obj.description,
-      likes: obj.likes,
-      comments: obj.comments
-    });
-  }
-  return photos;
+
+for (let i = 0; i < 25; i++) {
+  const id = i + 1;
+  const url = `photos/${i+1}.jpg`;
+  const newElem = {
+    id,
+    url,
+    description: `Ссылка: ${url}, номер: ${id}`,
+    likes: getRandomInt(15,200),
+    comments: getRandomInt(0,200)
+  };
+  photos.push(newElem);
 }
 
-export {getPhotos};
+export {photos};
 //Задание 7 часть 2
