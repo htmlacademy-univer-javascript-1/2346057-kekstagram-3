@@ -1,17 +1,19 @@
-import { getRandInt } from './util.js';
-function getPhotos() {
-  const photos = [];
-  for (let i=0; i<25; i++) {
-    photos.push({
-      id: i+1,
-      url: `photos/${i+1}.jpg`,
-      description: `my favourite photos #${i+1}`,
-      likes: getRandInt(15, 200),
-      comments: getRandInt(0, 200)
-    });
-  }
-  return photos;
+import { getRandomInt } from './util.js';
+const photos = [];
+
+
+for (let i = 0; i < 25; i++) {
+  const id = i + 1;
+  const url = `photos/${i+1}.jpg`;
+  const newElem = {
+    id,
+    url,
+    description: `Ссылка: ${url}, номер: ${id}`,
+    likes: getRandomInt(15,200),
+    comments: getRandomInt(0,200)
+  };
+  photos.push(newElem);
 }
 
-export {getPhotos};
+export {photos};
 //Задание 7 часть 2
